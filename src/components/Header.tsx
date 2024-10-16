@@ -1,45 +1,77 @@
-import { Button } from "../components/ui/button";
-import { Input } from "./ui/input";
+// components/Header.tsx
 
-export default function Header() {
+import { motion } from 'framer-motion'
+import { Menu } from 'lucide-react'
+import { Button } from './ui/button'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from './ui/sheet' // Adjust path if needed
+
+const Header = () => {
   return (
-    <header className="bg-[#1e6e41] text-white py-4 shadow-md">
-      <div className="container mx-auto flex justify-between items-center px-6">
-        {/* Logo */}
-        <img 
-          src="/logo1.png" 
-          alt="Avenue5 Logo" 
-          className="h-12 mr-12"  /* Adjust the height (h-12) as per your need */
-        />
-
-        {/* Navigation */}
-        <nav className="flex space-x-8 text-lg font-medium">
-          {['ABOUT', 'PROPERTIES', 'PROJECTS', 'BLOG', 'CAREERS', 'CONTACT'].map((item, idx) => (
-            <a
-              key={idx}
-              href={`/${item.toLowerCase()}`}
-              className="hover:text-yellow-300 transition-colors duration-300"
+    <header className="sticky top-0 z-50 bg-black/50 backdrop-blur-md">
+      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
+        <motion.a
+          href="#"
+          className="text-3xl font-bold"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          <span className="text-white">tr</span>
+          <span className="text-red-600">e</span>
+          <span className="text-white">ndtial</span>
+        </motion.a>
+        <nav className="hidden md:flex space-x-8">
+          {['Services', 'About', 'Contact'].map((item) => (
+            <motion.a
+              key={item}
+              href={`#${item.toLowerCase()}`}
+              className="text-gray-300 hover:text-red-600 transition-colors"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
             >
               {item}
-            </a>
+            </motion.a>
           ))}
         </nav>
-
-        {/* Search and Button */}
-        <div className="flex items-center space-x-4 ml-12">
-          <Input
-            type="text"
-            placeholder="Property ID"
-            className="w-40 bg-white text-black py-2 px-4 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-300 transition-all duration-300"
-          />
-          <Button
-            variant="outline"
-            className="bg-[#2e8b57] text-white hover:bg-[#236e44] px-4 py-2 rounded-md transition-all duration-300 shadow-md"
-          >
-            SEND INQUIRY
+        <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+          <Button className="hidden md:inline-flex bg-red-600 hover:bg-red-700 text-white">
+            Get Started
           </Button>
-        </div>
+        </motion.div>
+        <Sheet>
+          <SheetTrigger>
+            <Button variant="ghost" size="icon" className="md:hidden text-white">
+              <Menu className="h-6 w-6" />
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right" className="bg-gray-900 text-white">
+            <SheetHeader>
+              <SheetTitle className="text-white">Menu</SheetTitle>
+            </SheetHeader>
+            <div className="flex flex-col space-y-4 mt-6">
+              {['Services', 'About', 'Contact'].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className="text-gray-300 hover:text-red-600 transition-colors text-lg"
+                >
+                  {item}
+                </a>
+              ))}
+              <Button className="bg-red-600 hover:bg-red-700 text-white mt-4">
+                Get Started
+              </Button>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
-  );
+  )
 }
+
+export default Header

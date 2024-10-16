@@ -1,87 +1,123 @@
-import { Button } from "../components/ui/button";
+// components/HeroSection.tsx
 
-// Extract HeroSection component
-function HeroSection() {
+import { motion } from 'framer-motion'
+import { ChevronRight, ArrowRight } from 'lucide-react'
+import AnimatedText from './AnimatedText'
+import FloatingElement from './FloatingElement'
+import { Button } from './ui/button'
+
+const HeroSection = () => {
   return (
-    <div className="min-h-screen flex flex-col relative overflow-hidden">
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        className="absolute z-0 w-full h-full object-cover"
-      >
-        <source
-          src="https://images.graana.com/video/upload/agency21/2_1/1655993188.mp4"
-          type="video/mp4"
-        />
-        Your browser does not support the video tag.
-      </video>
-
-      {/* Dark Overlay */}
-      <div className="absolute z-5 w-full h-full bg-black bg-opacity-40"></div>
-
-      {/* Content */}
-      <div className="relative z-10 flex flex-col min-h-screen text-white">
-        <main className="flex-grow flex items-center justify-center px-4 md:px-12">
-          <div className="container mx-auto flex flex-col items-center justify-center text-center space-y-8 animate-fadeIn">
-            {/* Title with Fade-in Animation */}
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-slideUp pt-16">
-              Bahria Town's Leading<br />Highrise Developer
-            </h1>
-
-            {/* Subtitle */}
-            <p className="text-xl md:text-3xl mb-8 animate-slideUp delay-150">
-              <span className="text-yellow-300">Find your new home</span>
-              <br />
-              Search properties for sale and rent in Bahria Town
-            </p>
-
-          {/* Buttons Section */}
-      <div className="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-6 mb-12">
-        <Button
-          variant="outline"
-          className="bg-black text-white border border-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 animate-fadeIn delay-200 py-4 px-8 rounded-lg w-72 text-center flex flex-col items-center justify-center h-24"
-        >
-          <span className="block text-base font-normal mb-1">Selling or Renting out?</span>
-          <span className="block font-bold text-2xl">Free Valuation</span>
-        </Button>
-        <Button
-          className="bg-[#2e8b57] hover:bg-[#236e44] text-white transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 animate-fadeIn delay-300 py-4 px-8 rounded-lg w-72 text-center flex flex-col items-center justify-center h-24"
-        >
-          <span className="block text-base font-normal mb-1">Buying, Renting or Invest?</span>
-          <span className="block font-bold text-2xl">Hot Deals</span>
-        </Button>
-            </div>
-
-            {/* Secondary Button */}
-            <Button className="bg-yellow-400 text-black hover:bg-yellow-500 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 animate-slideUp delay-400 py-6 px-16 text-lg rounded-lg">
-              Looking for Highrise Investment
+    <section className="relative min-h-screen flex items-center overflow-hidden">
+      <div className="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center relative z-10">
+        <div className="md:w-1/2 mb-10 md:mb-0">
+          <motion.h1
+            className="text-5xl md:text-6xl font-bold mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <AnimatedText text="Your Go-to" />{' '}
+            <span className="text-red-600">
+              <AnimatedText text="Marketing" />
+            </span>{' '}
+            <AnimatedText text="Expert" />
+          </motion.h1>
+          <motion.p
+            className="text-xl mb-8 text-gray-300"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+          >
+            Your vision, our execution. Supercharge your digital presence with Trendtial's
+            cutting-edge strategies.
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+            className="flex flex-wrap gap-4"
+          >
+            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white">
+              Get Started
+              <ChevronRight className="ml-2 h-4 w-4" />
             </Button>
-
-            {/* Form Section */}
-            <div className="mt-16 bg-white bg-opacity-20 p-6 rounded-lg flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-4 max-w-5xl w-full animate-fadeIn delay-500">
-              <select className="bg-white text-black rounded px-4 py-3 flex-grow focus:ring-2 focus:ring-yellow-400 transition-all duration-300 shadow-md">
-                <option>City</option>
-              </select>
-              <select className="bg-white text-black rounded px-4 py-3 flex-grow focus:ring-2 focus:ring-yellow-400 transition-all duration-300 shadow-md">
-                <option>Area</option>
-              </select>
-              <select className="bg-white text-black rounded px-4 py-3 flex-grow focus:ring-2 focus:ring-yellow-400 transition-all duration-300 shadow-md">
-                <option>All Types</option>
-              </select>
-              <Button className="bg-yellow-400 text-black hover:bg-yellow-500 px-12 py-3 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 rounded-lg">
-                BUY
-              </Button>
-              <Button className="bg-yellow-400 text-black hover:bg-yellow-500 px-12 py-3 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105 rounded-lg">
-                RENT
-              </Button>
-            </div>
-          </div>
-        </main>
+            <Button
+              variant="outline"
+              size="lg"
+              className="text-white border-white hover:bg-white hover:text-black"
+            >
+              Learn More
+            </Button>
+          </motion.div>
+        </div>
+        <div className="md:w-1/2 relative">
+          <FloatingElement duration={7} yOffset={15}>
+            <motion.img
+              src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-DQJMc6Ww221eldwuuStIVrdLu2xzzL.png"
+              alt="Social Media Supercharged"
+              className="w-full h-auto rounded-lg shadow-2xl"
+              initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+              animate={{ opacity: 1, scale: 1, rotate: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            />
+          </FloatingElement>
+          <motion.div
+            className="absolute -top-10 -left-10 w-20 h-20 bg-red-500 rounded-full opacity-50"
+            animate={{
+              scale: [1, 1.2, 1],
+              rotate: [0, 180, 360],
+            }}
+            transition={{
+              duration: 5,
+              repeat: Infinity,
+              repeatType: 'reverse',
+            }}
+          />
+          <motion.div
+            className="absolute -bottom-5 -right-5 w-16 h-16 bg-purple-500 rounded-full opacity-50"
+            animate={{
+              scale: [1, 1.3, 1],
+              rotate: [0, -180, -360],
+            }}
+            transition={{
+              duration: 7,
+              repeat: Infinity,
+              repeatType: 'reverse',
+            }}
+          />
+        </div>
       </div>
-    </div>
-  );
+      <div className="absolute inset-0 z-0">
+        <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+          <motion.path
+            d="M0,0 Q50,50 100,0 V100 H0 Z"
+            fill="url(#gradient)"
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1.5, ease: 'easeInOut' }}
+          />
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.2" />
+              <stop offset="50%" stopColor="#ef4444" stopOpacity="0.2" />
+              <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.2" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <motion.div
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1, duration: 0.5 }}
+      >
+        <FloatingElement duration={2} yOffset={5}>
+          <ArrowRight className="w-8 h-8 text-white" />
+        </FloatingElement>
+      </motion.div>
+    </section>
+  )
 }
 
-export default HeroSection;
+export default HeroSection
