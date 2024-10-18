@@ -9,6 +9,15 @@ import ContactSection from '../components/ContactSection'
 
 export default function LandingPage() {
   return (
+    <div className="min-h-screen bg-gradient-to-br from-black via-gray-900 to-red-900 text-white overflow-hidden">
+      <ParticleBackground />
+      <main>
+        <HeroSection />
+        <ServicesSection />
+        <AboutSection />
+        <ContactSection />
+      </main>
 
+    </div>
   )
 }
