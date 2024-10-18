@@ -1,7 +1,6 @@
 import React from 'react';
 import Timeline from '../components/ui/Timeline';
 import Founders from '../components/Founders';
-import Footer from '../components/Footer';
 import ContactUs from '../components/ContactUs';
 
 const timelineData = [
@@ -41,7 +40,6 @@ const About = () => {
             <Founders />
             <Timeline data={timelineData} />
           <ContactUs />
-          <Footer />
         </div>
       </main>
     </div>

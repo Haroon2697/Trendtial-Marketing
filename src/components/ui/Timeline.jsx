@@ -23,7 +23,7 @@ const timelineData = [
       'Began building team & efforts to go deeper within computer vision & mobile technology.',
       'Planning & researching advanced image transformations & building according product use cases.'
     ],
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG9ncmFwaHklMjBhcHB8ZW58MHx8MHx8fDA%3D'
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG9ncmFpaHklMjBhcHB8ZW58MHx8MHx8fDA%3D'
   },
   {
     year: '2024',
@@ -59,7 +59,7 @@ const Timeline = () => {
 
   return (
     <div
-      className="w-full bg-neutral-950 text-white font-sans md:px-10"
+      className="w-full bg-gradient-to-t from-black via-gray-900 to-red-900/5 text-white font-sans md:px-10"
       ref={containerRef}
     >
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">

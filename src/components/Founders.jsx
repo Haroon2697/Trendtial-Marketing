@@ -18,15 +18,15 @@ export default function Founders() {
   ]
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-16">
-      <h1 className="text-6xl font-bold mb-12 text-center">Founders</h1>
+    <div className=" w-full bg-gradient-to-b from-black via-gray-900 to-red-900 px-4 py-16">
+      <h1 className="text-6xl font-bold mb-12 text-center text-white">Founders</h1>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {founders.map((founder) => (
           <div key={founder.name} className="relative overflow-hidden rounded-lg shadow-lg">
             <img
               src={founder.imageUrl}
               alt={founder.name}
-              className="w-full h-[400px] object-cover"
+              className="w-full h-[500px] object-cover"
             />
             <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
               <h2 className="text-2xl font-semibold text-white">{founder.name}</h2>
