@@ -59,7 +59,7 @@ const Timeline = () => {
 
   return (
     <div
-      className="w-full bg-gradient-to-t from-black via-gray-900 to-red-900/5 text-white font-sans md:px-10"
+      className="w-full bg-gradient-to-t from-black via-gray-900 to-red-900 text-white font-sans md:px-10"
       ref={containerRef}
     >
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
