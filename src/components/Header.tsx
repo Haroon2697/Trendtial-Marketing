@@ -26,7 +26,7 @@ const Header = () => {
           <span className="text-white">ndtial</span>
         </motion.a>
         <nav className="hidden md:flex space-x-8">
-          {['Services', 'About', 'Contact'].map((item) => (
+          {['Services', 'about', 'Contact'].map((item) => (
             <motion.a
               key={item}
               href={`#${item.toLowerCase()}`}
