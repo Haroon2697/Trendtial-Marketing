@@ -1,7 +1,7 @@
 import React from 'react';
 import Timeline from '../components/timeline'
 import Founders from '../components/founder'
-import ContactUs from '../components/ContactUs'
+import ContactUs from '../components/contactpage'
 
 const timelineData = [
   {
