@@ -1,208 +1,226 @@
-import React, { useRef, useEffect } from 'react';
-import { motion, useAnimation, useInView, useScroll, useTransform, useMotionValue, useVelocity, useSpring, useAnimationFrame } from 'framer-motion';
+'use client'
 
+import React, { useRef, useEffect } from 'react'
+import { motion, useAnimation, useInView } from 'framer-motion'
+import { Linkedin, Twitter } from 'lucide-react'
+import { Button } from '../components/ui/button'
+import ParticleBackground from '../components/ParticleBackground'
+
+// Complete team members with specific adjustments for visibility
 const teamMembers = [
   {
-    name: "Abdullah Rafique",
-    role: "CTO & Co-Founder",
-    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D",
-    bio: "Visionary technologist with a passion for AI and machine learning.",
-  },
-  {
-    name: "Ahmed Abubakr",
+    name: "Sheryar Kayani",
     role: "CEO & Co-Founder",
-    imageUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
+    imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sheryar-x5VPdpU5ynaQYezxY3bdkk6ErkKyb2.jpg",
     bio: "Strategic leader driving innovation in digital marketing.",
+    color: "from-blue-500 to-blue-700",
+    linkedinUrl: "https://linkedin.com/in/sheryar-kayani",
+    twitterUrl: "https://twitter.com/sheryar-kayani"
   },
   {
-    name: "Zain-ul-Abedein",
-    role: "CPO & Co-Founder",
-    imageUrl: "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWFuJTIwcHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
-    bio: "Product visionary with a keen eye for user experience and design.",
+    name: "Muhammad Junaid",
+    role: "CTO & Co-Founder",
+    imageUrl: "public/junaid.jpg",
+    bio: "Visionary technologist with a passion for AI and machine learning.",
+    color: "from-teal-500 to-teal-700",
+    linkedinUrl: "https://linkedin.com/in/muhammad-junaid",
+    twitterUrl: "https://twitter.com/muhammad-junaid"
   },
   {
-    name: "Sarah Johnson",
-    role: "Head of Marketing",
-    imageUrl: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D",
+    name: "Abdul Faheem",
+    role: "CFO & Co-Founder",
+    imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/abdul%20faheem-j7eCq0LNIO6WaDci9e1YAPcIOQ0Hd7.jpg",
+    bio: "Financial expert ensuring sustainable growth and profitability.",
+    color: "from-purple-500 to-purple-700",
+    linkedinUrl: "https://linkedin.com/in/abdul-faheem",
+    twitterUrl: "https://twitter.com/abdul-faheem"
+  },
+  {
+    name: "Khadija",
+    role: "Head HR",
+    imageUrl: "public/khadija.jpeg",
+    bio: "Cultivating a positive work culture and nurturing talent.",
+    color: "from-pink-500 to-pink-700",
+    linkedinUrl: "https://linkedin.com/in/khadija",
+    twitterUrl: "https://twitter.com/khadija",
+    fitTop: false // Adjusted for clear visibility of face
+  },
+  {
+    name: "Emaan",
+    role: "Director Sales",
+    imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/emaan-VZlwSdMddMTJwbOZtWjUAF98O1k7WX.jpg",
+    bio: "Driving revenue growth through strategic sales initiatives.",
+    color: "from-green-500 to-green-700",
+    linkedinUrl: "https://linkedin.com/in/emaan",
+    twitterUrl: "https://twitter.com/emaan"
+  },
+  {
+    name: "Mehreen",
+    role: "Head Marketing",
+    imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/mehreen-JfrVeMiBEoWSB9kAqSBzaHRJQBXVON.PNG",
     bio: "Creative marketer with a data-driven approach to growth.",
+    color: "from-green-600 to-green-800",
+    linkedinUrl: "https://linkedin.com/in/mehreen",
+    twitterUrl: "https://twitter.com/mehreen",
+    fitTop: true // Adjusted for clear visibility of face
   },
   {
-    name: "Michael Chen",
-    role: "Lead Developer",
-    imageUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D",
-    bio: "Full-stack wizard turning complex problems into elegant solutions.",
+    name: "Anooshy",
+    role: "Creative Director",
+    imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/anooshy-vPx0R93fsuDv5czhBkDfeLFc9n0DfF.jpg",
+    bio: "Visionary designer shaping our brand's visual identity.",
+    color: "from-yellow-500 to-yellow-700",
+    linkedinUrl: "https://linkedin.com/in/anooshy",
+    twitterUrl: "https://twitter.com/anooshy",
+    fitTop: true // Adjusted for clear visibility of face
   },
   {
-    name: "Emily Rodriguez",
-    role: "UX/UI Designer",
-    imageUrl: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D",
-    bio: "Passionate about creating intuitive and beautiful user experiences.",
+    name: "Sana",
+    role: "Head Video Content",
+    imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sana-6vhl1s5ofPUffov2Tsbu0ZWW1NuzzZ.jpeg",
+    bio: "Storyteller extraordinaire, bringing ideas to life through video.",
+    color: "from-yellow-600 to-yellow-800",
+    linkedinUrl: "https://linkedin.com/in/sana",
+    twitterUrl: "https://twitter.com/sana",
+    fitTop: true // Adjusted for clear visibility of face
   },
-];
+  {
+    name: "Aabis",
+    role: "Head Web Development",
+    imageUrl: "public/aabis.jpg",
+    bio: "Crafting seamless digital experiences through innovative web solutions.",
+    color: "from-purple-500 to-purple-700",
+    linkedinUrl: "https://linkedin.com/in/aabis",
+    twitterUrl: "https://twitter.com/aabis"
+  },
+  {
+    name: "Tooba",
+    role: "Director Global Expansion",
+    imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/tooba-bKYm1nUwFDsLklC0thdg2TF2alABls.jpg",
+    bio: "Spearheading international growth through data-driven strategies.",
+    color: "from-pink-500 to-pink-700",
+    linkedinUrl: "https://linkedin.com/in/tooba",
+    twitterUrl: "https://twitter.com/tooba"
+  },
+  {
+    name: "Khizar",
+    role: "Chief Strategy Officer",
+    imageUrl: "public/khizar.jpg",
+    bio: "Building lasting relationships and expanding our client base.",
+    color: "from-green-600 to-green-800",
+    linkedinUrl: "https://linkedin.com/in/khizar",
+    twitterUrl: "https://twitter.com/khizar"
+  },
+  {
+    name: "Fizza",
+    role: "Head of Sales",
+    imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Image%202024-10-27%20at%2013.03.43_b4ccce0b-w6n1z9t3QEbj5Nqa2qSBurnAWbPEmh.jpg",
+    bio: "Driving sales performance and client satisfaction to new heights.",
+    color: "from-green-700 to-green-900",
+    linkedinUrl: "https://linkedin.com/in/fizza",
+    twitterUrl: "https://twitter.com/fizza"
+  },
+]
 
-const wrap = (min: number, max: number, v: number) => {
-  const rangeSize = max - min;
-  return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
-};
 
-const ParallaxText = ({ children, baseVelocity = 100 }: { children: React.ReactNode; baseVelocity?: number }) => {
-  const baseX = useMotionValue(0);
-  const { scrollY } = useScroll();
-  const scrollVelocity = useVelocity(scrollY);
-  const smoothVelocity = useSpring(scrollVelocity, {
-    damping: 50,
-    stiffness: 400
-  });
-  const velocityFactor = useTransform(smoothVelocity, [0, 1000], [0, 5], {
-    clamp: false
-  });
+// Adjust image position based on team member's name
+// Adjust image position based on team member's name
+const adjustImagePosition = (name) => {
+  switch (name) {
+    case 'Mehreen':
+      return 'object-[center_30%]'; // Move image up slightly
+    case 'Anooshy':
+      return 'object-[center_26%]'; // Move image up slightly
+    case 'Khadija':
+      return 'object-[center_35%]'; // Move image up slightly
+    case 'Abdul Faheem':
+      return 'object-[center_1%]'; // Move image down slightly
+    case 'Muhammad Junaid':
+      return 'object-[center_28%]';
+      case 'Tooba':
+      return 'object-[center_56%]'; 
+      case 'Sana':
+        return 'object-[center_17%]';
+        case 'Khizar':
+          return 'object-[center_8%]'; // Adjust as needed to move image up
+        case 'Aabis':
+          return 'object-[center_3%]'; // Adjust as needed to move image up
+        case 'Fizza':
+          return 'object-[center_40%]'; // Adjust as needed to move image down
+        
+    default:
+      return ''; // No adjustment
+  }
+}
 
-  const x = useTransform(baseX, (v) => `${wrap(-20, -45, v)}%`);
 
-  const directionFactor = useRef<number>(1);
-  useAnimationFrame((t, delta) => {
-    let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
-    if (velocityFactor.get() < 0) {
-      directionFactor.current = -1;
-    } else if (velocityFactor.get() > 0) {
-      directionFactor.current = 1;
-    }
-    moveBy += directionFactor.current * moveBy * velocityFactor.get();
-    baseX.set(baseX.get() + moveBy);
-  });
 
-  return (
-    <div className="parallax">
-      <motion.div className="scroller" style={{ x }}>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-        <span>{children} </span>
-      </motion.div>
-    </div>
-  );
-};
 
-const TeamMemberCard = ({ member, index }: { member: typeof teamMembers[0]; index: number }) => {
-  const cardRef = useRef(null);
-  const isInView = useInView(cardRef, { once: true, amount: 0.2 });
-  const controls = useAnimation();
+const TeamMemberCard = ({ member }) => {
+  const cardRef = useRef(null)
+  const isInView = useInView(cardRef, { once: true, amount: 0.2 })
+  const controls = useAnimation()
 
   useEffect(() => {
     if (isInView) {
-      controls.start("visible");
+      controls.start({ opacity: 1, y: 0 })
     }
-  }, [isInView, controls]);
+  }, [isInView, controls])
 
   return (
     <motion.div
       ref={cardRef}
-      initial="hidden"
+      initial={{ opacity: 0, y: 50 }}
       animate={controls}
-      variants={{
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.6, delay: index * 0.2 } }
-      }}
-      whileHover={{ scale: 1.05, rotateY: 10 }}
-      className="bg-gradient-to-br from-red-800 to-red-600 rounded-xl overflow-hidden shadow-2xl transform transition-all duration-300 ease-in-out"
+      className={`bg-gradient-to-br ${member.color} rounded-lg overflow-hidden shadow-md transform transition-all duration-300 ease-in-out mb-6`}
     >
-      <motion.div
-        whileHover={{ scale: 1.1 }}
-        className="relative h-64 overflow-hidden"
-      >
-        <motion.img
-          src={member.imageUrl}
-          alt={member.name}
-          className="w-full h-full object-cover"
-          initial={{ scale: 1.2 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.6 }}
-        />
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileHover={{ opacity: 1 }}
-          className="absolute inset-0 bg-gradient-to-t from-red-900 to-transparent flex items-end justify-center p-4"
-        >
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            whileHover={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.3 }}
-            className="text-white text-center"
-          >
-            {member.bio}
-          </motion.p>
-        </motion.div>
-      </motion.div>
-      <motion.div
-        className="p-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3, duration: 0.3 }}
-      >
-        <h3 className="text-2xl font-bold text-white mb-2">{member.name}</h3>
-        <p className="text-red-200">{member.role}</p>
-      </motion.div>
+      <div className="relative h-48 overflow-hidden">
+      <img
+  src={member.imageUrl}
+  alt={member.name}
+  className={`w-full h-full object-cover ${adjustImagePosition(member.name)}`}
+/>
+
+
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent p-3 flex flex-col justify-end">
+          <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
+          <p className="text-red-200 text-sm">{member.role}</p>
+        </div>
+      </div>
+      <div className="p-4">
+        <p className="text-white text-sm mb-4">{member.bio}</p>
+        <div className="flex space-x-2">
+          <a href={member.linkedinUrl} target="_blank" rel="noopener noreferrer">
+            <Button size="sm" variant="secondary" className="bg-blue-500 text-white hover:bg-opacity-80">
+              <Linkedin className="h-4 w-4 mr-1" />
+              LinkedIn
+            </Button>
+          </a>
+          <a href={member.twitterUrl} target="_blank" rel="noopener noreferrer">
+            <Button size="sm" variant="secondary" className="bg-blue-400 text-white hover:bg-opacity-80">
+              <Twitter className="h-4 w-4 mr-1" />
+              Twitter
+            </Button>
+          </a>
+        </div>
+      </div>
     </motion.div>
-  );
-};
+  )
+}
 
-const TeamPage = () => {
-  const { scrollYProgress } = useScroll();
-  const scale = useTransform(scrollYProgress, [0, 1], [0.2, 1]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [0.2, 1]);
 
+export default function EnhancedTeamPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-red-900 via-red-800 to-red-700 text-white py-20 overflow-hidden">
-      <motion.div
-        style={{ scale, opacity }}
-        className="container mx-auto px-4"
-      >
-        <motion.h1
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.8, type: "spring", stiffness: 100 }}
-          className="text-6xl font-bold text-center mb-16"
-        >
-          Meet Our Extraordinary Team
-        </motion.h1>
-
-        <ParallaxText baseVelocity={-5}>Innovate • Create • Inspire</ParallaxText>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16">
+    <div className="min-h-screen bg-gradient-to-b from-red-900 to-black text-white overflow-hidden">
+      <ParticleBackground />
+      <div className="container mx-auto px-4 py-16">
+        <h1 className="text-5xl font-bold mb-12 text-center">Meet Our Team</h1>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {teamMembers.map((member, index) => (
-            <TeamMemberCard key={member.name} member={member} index={index} />
+            <TeamMemberCard key={index} member={member} />
           ))}
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 100 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 0.8 }}
-          className="text-center mt-20"
-        >
-          <h2 className="text-4xl font-bold mb-6">Join Our Team</h2>
-          <p className="text-xl mb-8">
-            We're always looking for talented individuals to join our mission.
-          </p>
-          <motion.button
-            whileHover={{ scale: 1.1, boxShadow: "0px 0px 8px rgb(255,255,255)" }}
-            whileTap={{ scale: 0.9 }}
-            className="bg-white text-red-600 px-8 py-3 rounded-full font-bold text-lg transition-all duration-300"
-          >
-            View Open Positions
-          </motion.button>
-        </motion.div>
-      </motion.div>
-
-      <motion.div
-        className="absolute top-0 left-0 right-0 bottom-0 pointer-events-none"
-        style={{
-          background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%)",
-          mixBlendMode: "overlay",
-        }}
-      />
+      </div>
     </div>
-  );
-};
-
-export default TeamPage;
+  )
+}

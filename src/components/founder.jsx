@@ -1,81 +1,127 @@
-import React from 'react';
-import { motion } from 'framer-motion';
+"use client"
 
+import { useEffect } from 'react'
+import { motion, useAnimation } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 const founders = [
   {
-    name: "Abdullah Rafique",
-    role: "CTO & Co-Founder",
-    imageUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHByb2ZpbGV8ZW58MHx8MHx8fDA%3D"
-  },
-  {
-    name: "Ahmed Abubakr",
+    name: "Sheryar Kayani",
     role: "CEO & Co-Founder",
-    imageUrl: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"
+    imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sheryar-x5VPdpU5ynaQYezxY3bdkk6ErkKyb2.jpg",
+  
   },
   {
-    name: "Zain-ul-Abedein",
-    role: "CPO & Co-Founder",
-    imageUrl: "https://images.unsplash.com/photo-1618077360395-f3068be8e001?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8bWFuJTIwcHJvZmlsZXxlbnwwfHwwfHx8MA%3D%3D"
+    name: "Muhammad Junaid",
+    role: "CTO & Co-Founder",
+    imageUrl: "/junaid.jpg", // Adjust the path if necessary
+  },
+   
+  {
+    name: "Abdul Faheem",
+    role: "CFO & Co-Founder",
+    imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/abdul%20faheem-j7eCq0LNIO6WaDci9e1YAPcIOQ0Hd7.jpg",
+ 
   }
+
 ];
+
+const adjustImagePosition = (name) => {
+  switch (name) {
+    case 'Muhammad Junaid':
+      return 'object-[center_35%]'; // Adjust this value to move Junaid's image down
+    case 'Abdul Faheem':
+      return 'object-[center_20%]'; // Adjust this value to move Faheem's image down
+    default:
+      return 'object-center'; // Default centering for others
+  }
+}
+
+
+
 
 const FounderCard = ({ founder, index }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 50 }}
+      className="bg-gray-800 rounded-lg shadow-lg border border-red-500 hover:border-red-400 transition-all duration-300 transform hover:-translate-y-2 overflow-hidden"
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.2 }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ scale: 1.05 }}
-      className="relative overflow-hidden rounded-lg shadow-lg group"
+      whileTap={{ scale: 0.95 }}
     >
-      <motion.img
-        src={founder.imageUrl}
-        alt={founder.name}
-        className="w-full h-[500px] object-cover transition-transform duration-300 group-hover:scale-110"
-      />
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileHover={{ opacity: 1 }}
-        transition={{ duration: 0.3 }}
-        className="absolute inset-0 bg-gradient-to-t from-red-900/90 to-transparent flex flex-col justify-end p-6"
-      >
-        <motion.h2
-          initial={{ y: 20, opacity: 0 }}
-          whileHover={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.3 }}
-          className="text-3xl font-bold text-white mb-2"
-        >
-          {founder.name}
-        </motion.h2>
-        <motion.p
-          initial={{ y: 20, opacity: 0 }}
-          whileHover={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.3, delay: 0.1 }}
-          className="text-lg text-red-200 bg-red-800/60 px-3 py-1 rounded-full inline-block"
-        >
-          {founder.role}
-        </motion.p>
-      </motion.div>
+      <div className="relative h-[300px]">
+        <img
+          src={founder.imageUrl}
+          alt={founder.name}
+          className={`w-full h-full object-cover ${adjustImagePosition(founder.name)}`}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-6">
+          <h3 className="text-xl font-semibold mb-1 text-white">{founder.name}</h3>
+          <p className="text-red-400">{founder.role}</p>
+        </div>
+      </div>
     </motion.div>
-  );
-};
+  )
+}
+
 
 export default function Founders() {
+  const controls = useAnimation()
+  const [ref, inView] = useInView()
+
+  useEffect(() => {
+    if (inView) {
+      controls.start('visible')
+    }
+  }, [controls, inView])
+
   return (
-    <div className="w-full bg-gradient-to-b from-red-900 to-red-600 px-4 py-16">
-      <motion.h1
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="text-6xl font-bold mb-12 text-center text-white"
-      >
-        Our Visionary Founders
-      </motion.h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
-        {founders.map((founder, index) => (
-          <FounderCard key={founder.name} founder={founder} index={index} />
-        ))}
+    <section id="founders" className="py-20 relative overflow-hidden bg-gray-900 w-full">
+      <div className="container mx-auto px-4">
+        <motion.h2
+          className="text-3xl md:text-4xl font-bold mb-12 text-center text-white"
+          ref={ref}
+          initial="hidden"
+          animate={controls}
+          variants={{
+            visible: { opacity: 1, y: 0 },
+            hidden: { opacity: 0, y: 20 },
+          }}
+          transition={{ duration: 0.5 }}
+        >
+          Our Visionary Founders
+        </motion.h2>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {founders.map((founder, index) => (
+            <FounderCard key={founder.name} founder={founder} index={index} />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+      <motion.div
+        className="absolute top-1/2 left-0 w-64 h-64 bg-red-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+        animate={{
+          x: [0, 100, 0],
+          y: [0, 50, 0],
+        }}
+        transition={{
+          duration: 15,
+          repeat: Infinity,
+          repeatType: 'reverse',
+        }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20"
+        animate={{
+          x: [0, -100, 0],
+          y: [0, -50, 0],
+        }}
+        transition={{
+          duration: 20,
+          repeat: Infinity,
+          repeatType: 'reverse',
+        }}
+      />
+    </section>
+  )
 }

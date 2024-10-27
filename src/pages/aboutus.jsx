@@ -1,7 +1,8 @@
 import React from 'react';
 import Timeline from '../components/timeline'
 import Founders from '../components/founder'
-import ContactUs from '../components/contactus'
+import ContactUs from '../components/ContactUs'
+import AboutSection from '../components/AboutSection'
 
 const timelineData = [
   {
@@ -33,13 +34,14 @@ const timelineData = [
 
 const About = () => {
   return (
-    <div className="bg-gradient-to-b from-red-900 to-red-600 text-white">
-      <main className="container mx-auto px-4 py-12">
+    <div className="bg-gray-900 text-white">
+      
         <h1 className="text-4xl font-bold mb-8 text-center">About Trendtial</h1>
         <Founders />
         <Timeline data={timelineData} />
         <ContactUs />
-      </main>
+        {/* <AboutSection /> */}
+    
     </div>
   );
 };

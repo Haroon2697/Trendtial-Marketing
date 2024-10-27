@@ -1,36 +1,38 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useMotionValueEvent, useScroll, useTransform, motion } from "framer-motion";
-
 const timelineData = [
   {
-    year: '2019',
+    year: '2022',
     content: [
-      'Began setting the foundations of what was about to become an AI Powerhouse.',
-      'Work started on building the initial technology base for our debut product in Photo Editing.',
-      'Focus on market research, setting up standards and initial tech capabilities'
+      'Founded as a pioneering Pakistani digital marketing agency with a vision for innovation.',
+      'Established a strong foundation in AI technologies to revolutionize marketing strategies.',
+      'Built expertise in social media marketing to effectively serve local businesses.'
     ],
-    image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dGVjaG5vbG9neSUyMGZvdW5kYXRpb258ZW58MHx8MHx8fDA%3D'
+     image: 'https://img.freepik.com/premium-photo/glowing-bulb-with-innovative-concept_713655-14590.jpg?w=996'
   },
   {
-    year: '2020',
+    year: '2023',
     content: [
-      'Launched our premier photography app focused on Image Backgrounds, which quickly scaled up to trend in Asia & South America.',
-      'Began building team & efforts to go deeper within computer vision & mobile technology.',
-      'Planning & researching advanced image transformations & building according product use cases.'
+      'Expanded services by integrating AI-driven solutions for enhanced audience targeting.',
+      'Secured our first international client, marking the start of our global journey.',
+      'Adopted trend-setting marketing approaches to stay ahead in the dynamic digital landscape.'
     ],
-    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGhvdG9ncmFwaHklMjBhcHB8ZW58MHx8MHx8fDA%3D'
+    image: 'https://img.freepik.com/free-vector/abstract-vector-red-mesh-background-chaotically-connected-points-polygons-flying-space-flying-debris-futuristic-technology-style-card-lines-points-circles-planes-futuristic-design_1217-696.jpg?t=st=1730029047~exp=1730032647~hmac=89fbcc2ca878941b6e9703e021a0704949a889db48bd35dc8bec1a045410d0d8&w=740' // Image representing AI technology
   },
   {
     year: '2024',
     content: [
-      'Widening our scope of Generative AI & launching text based Gen AI products providing interactive information on the go.',
-      'Establishing groundwork with research and development into emerging forms on Gen AI such as Video & Sound/Music generations.',
-      'Focusing on promoting strong principles that would serve as guiding lights as our people grow.',
-      'And the year goes on as we keep making magic happen!'
+      'Achieved exponential growth locally, becoming a leading digital marketing agency in Pakistan.',
+      'Launched successful campaigns utilizing AI and trend analysis, setting new industry standards.',
+      'Invested in cutting-edge AI tools and staff training to boost our service offerings.'
     ],
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z2VuZXJhdGl2ZSUyMGFpfGVufDB8fDB8fHww'
-  }
+   image: 'https://img.freepik.com/free-vector/abstract-mosaic-background-with-standing-success-businessman-silhouetted-vector-illustration-xaxa_460848-11862.jpg?t=st=1730029130~exp=1730032730~hmac=0e65d8ea3eeebbfe5e0a882eae936b0302f123badfca800ed97b8180995da3dc&w=740'
+  },
+ 
+  
 ];
+
+
 
 const Timeline = () => {
   const ref = useRef(null);
@@ -54,7 +56,7 @@ const Timeline = () => {
 
   return (
     <div
-      className="w-full bg-gradient-to-t from-red-900 via-red-800 to-red-700 text-white font-sans md:px-10"
+      className="w-full bg-gray-900 text-white font-sans md:px-10"
       ref={containerRef}
     >
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
