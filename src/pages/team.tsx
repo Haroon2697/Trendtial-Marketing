@@ -14,8 +14,8 @@ const teamMembers = [
     imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/sheryar-x5VPdpU5ynaQYezxY3bdkk6ErkKyb2.jpg",
     bio: "Strategic leader driving innovation in digital marketing.",
     color: "from-blue-500 to-blue-700",
-    linkedinUrl: "https://linkedin.com/in/sheryar-kayani",
-    twitterUrl: "https://twitter.com/sheryar-kayani"
+    linkedinUrl: "https://linkedin.com/in/sheryarkayani",
+    twitterUrl: "https://twitter.com/sheryarkayani"
   },
   {
     name: "Muhammad Junaid",
@@ -51,7 +51,7 @@ const teamMembers = [
     imageUrl: "https://hebbkx1anhila5yf.public.blob.vercel-storage.com/emaan-VZlwSdMddMTJwbOZtWjUAF98O1k7WX.jpg",
     bio: "Driving revenue growth through strategic sales initiatives.",
     color: "from-green-500 to-green-700",
-    linkedinUrl: "https://linkedin.com/in/emaan",
+    linkedinUrl: "https://linkedin.com/in/emaanazhar",
     twitterUrl: "https://twitter.com/emaan"
   },
   {
