@@ -20,7 +20,7 @@ const teamMembers = [
   {
     name: "Muhammad Junaid",
     role: "CTO & Co-Founder",
-    imageUrl: "public/junaid.jpg",
+    imageUrl: "/junaid.jpg",
     bio: "Visionary technologist with a passion for AI and machine learning.",
     color: "from-teal-500 to-teal-700",
     linkedinUrl: "https://linkedin.com/in/muhammad-junaid",
@@ -38,7 +38,7 @@ const teamMembers = [
   {
     name: "Khadija",
     role: "Head HR",
-    imageUrl: "public/khadija.jpeg",
+    imageUrl: "/khadija.jpeg",
     bio: "Cultivating a positive work culture and nurturing talent.",
     color: "from-pink-500 to-pink-700",
     linkedinUrl: "https://linkedin.com/in/khadija",
@@ -105,7 +105,7 @@ const teamMembers = [
   {
     name: "Khizar",
     role: "Chief Strategy Officer",
-    imageUrl: "public/khizar.jpg",
+    imageUrl: "/khizar.jpg",
     bio: "Building lasting relationships and expanding our client base.",
     color: "from-green-600 to-green-800",
     linkedinUrl: "https://linkedin.com/in/khizar",
