@@ -87,7 +87,7 @@ const teamMembers = [
   {
     name: "Aabis",
     role: "Head Web Development",
-    imageUrl: "public/aabis.jpg",
+    imageUrl: "/aabis.jpg",
     bio: "Crafting seamless digital experiences through innovative web solutions.",
     color: "from-purple-500 to-purple-700",
     linkedinUrl: "https://linkedin.com/in/aabis",
