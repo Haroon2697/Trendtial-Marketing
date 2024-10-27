@@ -32,7 +32,7 @@ const timelineData = [
   }
 ];
 
-const About = () => {
+const About: React.FC = () => {
   return (
     <div className="bg-gray-900 text-white">
       
