@@ -1,7 +1,39 @@
-import React from 'react';
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import LazyLoad from 'react-lazyload';
+
+// Custom function to preload PDF files using fetch to improve performance
+function preloadPdf(url: string) {
+  fetch(url, { method: 'HEAD' }) // Fetch the PDF with a HEAD request to initiate loading
+    .then((response) => {
+      if (response.ok) {
+        console.log(`Preloaded PDF: ${url}`);
+      } else {
+        console.error(`Failed to preload PDF: ${url}`);
+      }
+    })
+    .catch((error) => {
+      console.error(`Error while preloading PDF: ${error}`);
+    });
+}
 
 function Work() {
+  const pdfLinks = [
+    '/pdfs/Portofolio - Content Writing.pdf',
+    '/pdfs/Company profile pdf3 (2).pdf',
+    '/pdfs/portfolio T_T.pdf',
+    '/pdfs/Shopify Company profile pdf.pdf',
+    '/pdfs/SEO REPORT.pdf',
+    '/pdfs/Company profile pdf2.pdf',
+  ];
+
+  const pdfLoadedRef = useRef(new Set());
+
+  // Preload all PDFs on mount
+  useEffect(() => {
+    pdfLinks.forEach((pdf) => preloadPdf(pdf));
+  }, []);
+
   const cardData = [
     {
       id: 1,
@@ -50,7 +82,7 @@ function Work() {
   return (
     <div className="bg-gradient-to-b from-gray-900 to-gray-800 text-white py-16 px-8">
       <h2 className="text-4xl font-bold text-left mb-4">Our Work</h2>
-      <hr className='mt-2 mb-12 border-gray-700' />
+      <hr className="mt-2 mb-12 border-gray-700" />
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {cardData.map((card) => (
           <motion.div
@@ -58,7 +90,7 @@ function Work() {
             className="bg-gray-800 rounded-lg overflow-hidden shadow-lg"
             whileHover={{ scale: 1.01 }}
             whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
           >
             <div className="relative">
               <img
@@ -67,10 +99,10 @@ function Work() {
                 className="w-full h-48 object-cover transition-transform duration-300 hover:scale-110"
                 loading="lazy"
               />
-              <motion.div 
+              <motion.div
                 className="absolute top-2 right-2 bg-orange-500 rounded-full p-2 text-2xl"
                 whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 10 }}
               >
                 {card.icon}
               </motion.div>
@@ -79,15 +111,26 @@ function Work() {
               <h3 className="text-xl font-semibold mb-3 text-orange-300">{card.text}</h3>
             </div>
             <div className="bg-gray-700 p-4 text-center hover:bg-gray-600">
-                
+              <LazyLoad height={200} offset={100} once>
                 <a
-                  href={card.pdfLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`View ${card.text}`}
+                  href="#"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    // Check if the PDF is preloaded and open it
+                    if (!pdfLoadedRef.current.has(card.pdfLink)) {
+                      console.log('PDF not preloaded, preloading now...');
+                      preloadPdf(card.pdfLink); // Preload the PDF when clicked
+                    } else {
+                      console.log('Opening preloaded PDF...');
+                    }
+                    window.open(card.pdfLink, '_blank');
+                    pdfLoadedRef.current.add(card.pdfLink); // Mark PDF as loaded
+                  }}
+                  className="text-lg font-semibold text-white hover:text-orange-500"
                 >
-                  View Portfolio
+                  View PDF
                 </a>
+              </LazyLoad>
             </div>
           </motion.div>
         ))}
@@ -97,4 +140,3 @@ function Work() {
 }
 
 export default Work;
-
