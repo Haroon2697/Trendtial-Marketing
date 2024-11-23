@@ -46,6 +46,14 @@ const Header = () => {
           >
             <Link to="/team">Team</Link>
           </motion.div>
+
+          <motion.div
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+            className="text-white hover:text-red-300 transition-colors"
+          >
+            <Link to="/work">Our Work</Link>
+          </motion.div>
         </nav>
 
         {/* Desktop "Get Started" Button */}
@@ -54,6 +62,8 @@ const Header = () => {
             Get Started
           </Button>
         </motion.div>
+
+        
 
         {/* Mobile Menu Button */}
         <div className="md:hidden">
